@@ -51,7 +51,7 @@ namespace PierresBakery.Controllers
     [HttpPost]
     public ActionResult Edit(Treat treat)
     {
-      _db.Treats.Attach(treat);
+      // _db.Treats.Attach(treat);
       _db.Entry(treat).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
