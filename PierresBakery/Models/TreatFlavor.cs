@@ -1,4 +1,4 @@
-namespace PierresBakery
+namespace PierresBakery.Models
 {
   public class TreatFlavor
   {
