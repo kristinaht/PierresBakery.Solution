@@ -8,8 +8,8 @@ namespace PierresBakery.Models
   // : DbContext to be replaced with IdentityDbContext<ApplicationUser> when Authentication is added !!!
   {
     public virtual DbSet<Treat> Treats { get; set; }
-    // public DbSet<Flavor> Flavors { get; set; }
-    // public DbSet<TreatFlavor> TreatFlavor { get; set; }
+    public DbSet<Flavor> Flavors { get; set; }
+    public DbSet<TreatFlavor> TreatFlavor { get; set; }
 
     public PierresBakeryContext(DbContextOptions options) : base(options) { }
   }
