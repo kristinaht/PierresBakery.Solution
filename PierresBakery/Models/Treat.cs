@@ -10,7 +10,7 @@ namespace PierresBakery
     }
 
     public int TreatId { get; set; }
-    public string Type { get; set; }
-    public virtual ICollection<TreatFlavor>Flavors { get; set; }
+    public string Name { get; set; }
+    public virtual ICollection<TreatFlavor> Flavors { get; set; }
   }
 }
