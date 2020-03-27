@@ -8,7 +8,7 @@ namespace PierresBakery.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Flavor",
+                name: "Flavors",
                 columns: table => new
                 {
                     FlavorId = table.Column<int>(nullable: false)
@@ -17,7 +17,7 @@ namespace PierresBakery.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Flavor", x => x.FlavorId);
+                    table.PrimaryKey("PK_Flavors", x => x.FlavorId);
                 });
 
             migrationBuilder.CreateTable(
@@ -26,7 +26,7 @@ namespace PierresBakery.Migrations
                 {
                     TreatId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Type = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,9 +46,9 @@ namespace PierresBakery.Migrations
                 {
                     table.PrimaryKey("PK_TreatFlavor", x => x.TreatFlavorId);
                     table.ForeignKey(
-                        name: "FK_TreatFlavor_Flavor_FlavorId",
+                        name: "FK_TreatFlavor_Flavors_FlavorId",
                         column: x => x.FlavorId,
-                        principalTable: "Flavor",
+                        principalTable: "Flavors",
                         principalColumn: "FlavorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -76,7 +76,7 @@ namespace PierresBakery.Migrations
                 name: "TreatFlavor");
 
             migrationBuilder.DropTable(
-                name: "Flavor");
+                name: "Flavors");
 
             migrationBuilder.DropTable(
                 name: "Treats");

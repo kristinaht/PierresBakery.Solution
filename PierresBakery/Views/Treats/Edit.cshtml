@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierresBakery.Models.Treat
+
+<h2>Edit</h2>
+
+<h3>Edit this treat: @Html.DisplayFor(model => model.Name)</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to treats", "Index")</p>
