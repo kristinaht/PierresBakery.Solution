@@ -8,8 +8,8 @@ using PierresBakery.Models;
 namespace PierresBakery.Migrations
 {
     [DbContext(typeof(PierresBakeryContext))]
-    [Migration("20200327222241_Initial")]
-    partial class Initial
+    [Migration("20200327224112_AnotherInitial")]
+    partial class AnotherInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

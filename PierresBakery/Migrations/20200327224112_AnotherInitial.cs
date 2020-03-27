@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PierresBakery.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AnotherInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
