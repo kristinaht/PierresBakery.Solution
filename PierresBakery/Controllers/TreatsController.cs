@@ -48,15 +48,13 @@ namespace PierresBakery.Controllers
       return View(thisTreat);
     }
 
-    [HttpPost]
+      [HttpPost]
     public ActionResult Edit(Treat treat)
     {
-      // _db.Treats.Attach(treat);
       _db.Entry(treat).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
     public ActionResult Delete(int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
