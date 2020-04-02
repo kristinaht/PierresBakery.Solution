@@ -21,5 +21,5 @@
 </ul>
 
 <p>@Html.ActionLink("Back to treats", "Index")</p>
-<p>@Html.ActionLink("Edit treat", "Edit")</p>
-<p>@Html.ActionLink("Delete treat", "Delete")</p>
+<p>@Html.ActionLink("Edit treat", "Edit", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete treat", "Delete", new { id = Model.TreatId})</p>
