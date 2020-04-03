@@ -48,5 +48,24 @@ namespace PierresBakery.Controllers
 
       return View(thisFlavor);
     }
+
+    public ActionResult Edit(int id)    
+    {
+      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
+      ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
+      return View(thisFlavor);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(int TreatId, Flavor flavor)
+    {
+      if(TreatId !=0)
+      {
+        _db.TreatFlavor.Add(new TreatFlavor{ TreatId=TreatId, FlavorId=flavor.FlavorId });
+      }
+      _db.Entry(flavor).State=EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
