@@ -1,10 +1,10 @@
 
-// using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace PierresBakery.Models
 {
-  public class PierresBakeryContext : DbContext
+  public class PierresBakeryContext : IdentityDbContext<ApplicationUser>
   // : DbContext to be replaced with IdentityDbContext<ApplicationUser> when Authentication is added !!!
   {
     public virtual DbSet<Treat> Treats { get; set; }
