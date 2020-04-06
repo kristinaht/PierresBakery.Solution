@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PierresBakery.Models;
 
 namespace PierresBakery.Migrations
 {
     [DbContext(typeof(PierresBakeryContext))]
-    partial class PierresBakeryContextModelSnapshot : ModelSnapshot
+    [Migration("20200406032929_MoreIdentity")]
+    partial class MoreIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

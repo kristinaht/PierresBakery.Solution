@@ -3,9 +3,11 @@ using PierresBakery.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PierresBakery.Controllers
 {
+  // [Authorize]
   public class TreatsController: Controller
   {
     private readonly PierresBakeryContext _db;
@@ -14,6 +16,7 @@ namespace PierresBakery.Controllers
       _db = db;
     }
 
+    // [AllowAnonymous]
     public ActionResult Index()
     {
       List<Treat> model = _db.Treats.ToList();
@@ -33,6 +36,7 @@ namespace PierresBakery.Controllers
       return RedirectToAction("Index");
     }
 
+    // [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisTreat = _db.Treats

@@ -4,21 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace PierresBakery.Controllers
 {
+  [Authorize]
   public class FlavorsController : Controller
   {
     private readonly PierresBakeryContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public FlavorsController(PierresBakeryContext db)
+    public FlavorsController(PierresBakeryContext db, UserManager<ApplicationUser> userManager)
     {
       _db = db;
+      _userManager = userManager;
     }
 
-    public ActionResult Index()
+    // [AllowAnonymous]
+    public async Task<ActionResult> Index()
     {
-      return View(_db.Flavors.ToList());
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id);
+      return View(userFlavors);
     }
 
     public ActionResult Create()
@@ -28,9 +39,15 @@ namespace PierresBakery.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Flavor flavor, int TreatId)
+    public async Task<ActionResult> Create(Flavor flavor, int TreatId)
     {
+      
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      flavor.User = currentUser;
+      
       _db.Flavors.Add(flavor);
+
       if(TreatId != 0)
       {
         _db.TreatFlavor.Add(new TreatFlavor() {TreatId = TreatId, FlavorId = flavor.FlavorId});
@@ -39,6 +56,7 @@ namespace PierresBakery.Controllers
       return RedirectToAction("Index");
     }
 
+    // [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisFlavor = _db.Flavors
