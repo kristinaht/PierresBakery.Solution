@@ -17,10 +17,10 @@ namespace PierresBakery.Controllers
     private readonly PierresBakeryContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public FlavorsController(PierresBakeryContext db, UserManager<ApplicationUser> userManager)
+    public FlavorsController(UserManager<ApplicationUser> userManager, PierresBakeryContext db)
     {
-      _db = db;
       _userManager = userManager;
+      _db = db;
     }
 
     // [AllowAnonymous]
